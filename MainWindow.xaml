@@ -3,9 +3,41 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:properties="clr-namespace:SydneyHUD_Installer.Properties"
         mc:Ignorable="d"
-        Title="SydneyHUD Installer" Height="350" Width="525" WindowStartupLocation="CenterScreen" WindowStyle="None">
-    <Grid>
-        
-    </Grid>
+        Title="{x:Static properties:Resources.SydneyHUD_Installer}" Height="600" Width="424.3" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="#FF212121" Foreground="WhiteSmoke" Loaded="Window_Loaded">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0"
+                      ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}" />
+    </WindowChrome.WindowChrome>
+    <Border x:Name="Border" BorderBrush="#FF673AB7"
+            BorderThickness="1">
+        <Grid>
+            <!-- Title bar -->
+            <StackPanel Orientation="Horizontal" Margin="0,5,5,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top">
+                <Button x:Name="Button_exit" Content="r" FontFamily="Marlett" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="WhiteSmoke" Width="20" Height="20" Click="Button_exit_Click"  />
+            </StackPanel>
+            <Grid Height="25" Margin="5,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="359">
+                <Label Content="{x:Static properties:Resources.SydneyHUD_Installer}" VerticalAlignment="Top" Height="25" Foreground="WhiteSmoke" Background="{x:Null}"/>
+            </Grid>
+
+            <!-- Directory area -->
+            <Label Content="{x:Static properties:Resources.Install_Directory}" HorizontalAlignment="Left" Margin="30,60,0,0" VerticalAlignment="Top" Foreground="WhiteSmoke"/>
+            <TextBox x:Name="TextBox_path" Height="23" Margin="50,91,105,0" TextWrapping="Wrap" Text="C:\Program Files (x86)\Steam\steamapps\common\PAYDAY 2\payday2_win32_release.exe" VerticalAlignment="Top" Background="#00000000" BorderBrush="WhiteSmoke" Foreground="WhiteSmoke" SelectionBrush="#FF673AB7" IsReadOnly="True"/>
+            <Button x:Name="Button_directory" Content="..." HorizontalAlignment="Right" Margin="0,91,50,0" VerticalAlignment="Top" Width="50" Height="23" Background="WhiteSmoke" BorderBrush="WhiteSmoke" Foreground="#FF212121" Click="Button_directory_Click"/>
+
+            <!-- Install button -->
+            <Button x:Name="Button_install" Content="{x:Static properties:Resources.Install}" Margin="50,0,50,50" Height="50" VerticalAlignment="Bottom" BorderBrush="{x:Null}" Background="#FF424242" Foreground="WhiteSmoke" Click="Button_install_Click"/>
+
+            <ProgressBar x:Name="ProgressBar" Height="16" Margin="50,0,50,120" VerticalAlignment="Bottom" Background="WhiteSmoke" BorderBrush="WhiteSmoke" Foreground="#FF673AB7" IsIndeterminate="True"/>
+
+            <!-- Footer -->
+            <Grid x:Name="Footer" Height="26" VerticalAlignment="Bottom" Background="#FF673AB7">
+                <Label x:Name="Label_status" Content="" HorizontalAlignment="Left" Width="150" Background="{x:Null}" Foreground="WhiteSmoke"/>
+            </Grid>
+            <TextBox x:Name="TextBox_log" Margin="50,119,50,141" TextWrapping="Wrap" Text="{x:Static properties:Resources.Loading}" Background="{x:Null}" BorderBrush="WhiteSmoke" Foreground="WhiteSmoke" IsReadOnly="True" SelectionBrush="#FF673AB7"/>
+        </Grid>
+    </Border>
 </Window>
